@@ -1,42 +1,18 @@
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.Objects;
+import javax.swing.*;
 
-public record BMIController(BMIView theView, BMIModel theModel) {
+public final class BMIController {
+    public static void main(String[] args) {
 
-    public BMIController(BMIView theView, BMIModel theModel) {
-        this.theView = theView;
-        this.theModel = theModel;
+        BMIView theView = new BMIView();
+        BMIModel theModel = new BMIModel();
 
-        this.theView.addEnterListener(new EnterListener());
-    }
+        theView.setTitle("BMI Calculator");
+        theView.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        theView.setVisible(true);
+        theView.setLocationRelativeTo(null);
+        theView.setResizable(false);
 
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == this) return true;
-        if (obj == null || obj.getClass() != this.getClass()) return false;
-        var that = (BMIController) obj;
-        return Objects.equals(this.theView, that.theView) &&
-                Objects.equals(this.theModel, that.theModel);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(theView, theModel);
-    }
-
-    @Override
-    public String toString() {
-        return "BMIController[" +
-                "theView=" + theView + ", " +
-                "theModel=" + theModel + ']';
-    }
-
-
-    class EnterListener implements ActionListener {
-
-        @Override
-        public void actionPerformed(ActionEvent e) {
+        theView.addEnterListener(e -> {
 
             double height, actualWeight, idealWeight, age, bodyFrame, slimness, bmi;
             String status;
@@ -60,6 +36,6 @@ public record BMIController(BMIView theView, BMIModel theModel) {
             } catch (NumberFormatException ex) {
                 theView.displayErrorMessage();
             }
-        }
+        });
     }
 }
