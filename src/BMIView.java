@@ -27,7 +27,7 @@ public class BMIView extends JFrame {
     private final JRadioButton male = new JRadioButton("male");
     private final JRadioButton female = new JRadioButton("female");
 
-    private final JSlider heightSlider = new JSlider(JSlider.HORIZONTAL, 150, 190, 150);;
+    private final JSlider heightSlider = new JSlider(JSlider.HORIZONTAL, 150, 190, 150);
 
     private final String[] bodyTypes = {"small", "medium", "large"};
 
